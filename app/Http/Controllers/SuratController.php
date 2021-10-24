@@ -14,7 +14,10 @@ class SuratController extends Controller
      */
     public function index()
     {
-        //
+        $surats = Surat::latest()->paginate(5);
+    
+        return view('surats.index',compact('surats'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +27,7 @@ class SuratController extends Controller
      */
     public function create()
     {
-        //
+        return view('surats.create');
     }
 
     /**
@@ -35,7 +38,26 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nomor' => 'required',
+            'kategori' => 'required',
+            'judul' => 'required',
+            'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+        ]);
+  
+        $input = $request->all();
+  
+        if ($file_path = $request->file('file_path ')) {
+            $destinationPath = 'file_path /';
+            $profileFile = date('YmdHis') . "." . $file_path ->getClientOriginalExtension();
+            $file_path ->move($destinationPath, $profileFile );
+            $input['file_path '] = "$profileFile ";
+        }
+    
+        Surat::create($input);
+     
+        return redirect()->route('surats.index')
+                        ->with('success','Surat created successfully.');
     }
 
     /**
@@ -46,7 +68,7 @@ class SuratController extends Controller
      */
     public function show(Surat $surat)
     {
-        //
+        return view('surats.show',compact('surat'));
     }
 
     /**
@@ -80,6 +102,9 @@ class SuratController extends Controller
      */
     public function destroy(Surat $surat)
     {
-        //
+        $surat->delete();
+     
+        return redirect()->route('surats.index')
+                        ->with('success','Surat deleted successfully');
     }
 }
