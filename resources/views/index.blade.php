@@ -55,11 +55,9 @@
                         <td>{{ $surat->created_at }}</td>
 
                         <td>
-
-
-                            
                             <form class="delete-user ml-2" action="{{route('surats.destroy',$surat)}}" method="POST">
-                            <a class="btn btn-info" href="{{ route('surats.show',$surat->id) }}">Show</a>
+                            <a class="btn btn-info" href="{{ route('surats.show',$surat->id) }}">Lihat</a>
+                            <a class="btn btn-info" href="">Download</a>
                                 @csrf
                                 @method('DELETE')
                                 <a class="btn btn-primary btn-action swal-6 active" data-toggle="tooltip" data-id="" title="Delete" onClick="return false"><i class="fas fa-trash"></i></a>

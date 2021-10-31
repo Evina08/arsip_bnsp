@@ -6,6 +6,7 @@ use App\Models\Surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Services\DataTable;
+
 class SuratController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class SuratController extends Controller
      */
     public function index()
     {
-       
+
         $surat = Surat::all();
 
         // menampilkan data
@@ -46,23 +47,23 @@ class SuratController extends Controller
             'judul' => 'required',
             'file_path' => 'required|file|mimes:csv,txt,xlx,xls,pdf|max:2048',
         ]);
-  
+
         $input = $request->all();
-  
+
         if ($file = $request->file('file_path ')) {
             $nama_file = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
             $ukuran_file = $file->getSize();
             $destinationPath = 'pdf/ ';
-            $profileFile = date('YmdHis') . "." . $file ->getClientOriginalExtension();
+            $profileFile = date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileFile);
             $input['file_path '] = "$profileFile ";
         }
-    
+
         Surat::create($input);
-     
+
         return redirect()->route('surats.index')
-                        ->with('success','Surat created successfully.');
+            ->with('success', 'Surat created successfully.');
     }
 
     /**
@@ -73,7 +74,7 @@ class SuratController extends Controller
      */
     public function show(Surat $surat)
     {
-        return view('show',compact('surat'));
+        return view('show', compact('surat'));
     }
 
     /**
@@ -108,8 +109,15 @@ class SuratController extends Controller
     public function destroy(Surat $surat)
     {
         $surat->delete();
-     
+
         return redirect()->route('surats.index')
-                        ->with('success','Surat deleted successfully');
+            ->with('success', 'Surat deleted successfully');
+    }
+    public function unduh($id)
+    {
+        $dl = Surat::find($id);
+        $path = public_path('pdf/' . $dl->file_surat);
+        // return Storage::download($path);
+        return response()->download($path);
     }
 }
