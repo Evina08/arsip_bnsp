@@ -14,7 +14,7 @@ use App\Http\Controllers\SuratController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.layout');
 });
 Route::resource('surats', SuratController::class);
 

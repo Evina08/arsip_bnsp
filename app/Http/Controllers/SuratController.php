@@ -14,6 +14,7 @@ class SuratController extends Controller
      */
     public function index()
     {
+       
         $surats = Surat::latest()->paginate(5);
     
         return view('surats.index',compact('surats'))
@@ -48,7 +49,7 @@ class SuratController extends Controller
         $input = $request->all();
   
         if ($file_path = $request->file('file_path ')) {
-            $destinationPath = 'file_path /';
+            $destinationPath = 'upload /';
             $profileFile = date('YmdHis') . "." . $file_path ->getClientOriginalExtension();
             $file_path ->move($destinationPath, $profileFile );
             $input['file_path '] = "$profileFile ";

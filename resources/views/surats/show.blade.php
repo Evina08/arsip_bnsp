@@ -1,4 +1,4 @@
-@extends('surats.layout')
+@extends('layouts.layout')
    
 @section('content')
     <div class="row">
@@ -31,10 +31,7 @@
                 {{ $surat->created_at }}
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>File:</strong>
-                <img src="/file_path/{{ $surat->file_path }}" width="500px">
-            </div>
+            
         </div>
         </div>
 

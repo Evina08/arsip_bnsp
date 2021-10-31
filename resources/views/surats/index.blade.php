@@ -1,10 +1,15 @@
-@extends('surats.layout')
+@extends('layouts.layout')
 
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>arsip</h2>
+            <center><h2>Arsip Surat</h2></center>
+            <br/>
+            <center><h8>Berikut adalah surat yang telah terbit</h8></center>
+            <p>
+            <center><h8>Klik "Lihat" untuk menampilkan surat</h8></center>
+            </p>
         </div>
         <div class="pull-right">
             <a class="btn btn-success" href="{{ route('surats.create') }}"> Create New </a>
@@ -54,3 +59,4 @@
 {!! $surats->links() !!}
 
 @endsection
+
