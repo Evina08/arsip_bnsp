@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('layouts.layout');
 });
 Route::resource('surats', SuratController::class);
+Route::get('/about', function () {
+    return view('about');
+});
+
 

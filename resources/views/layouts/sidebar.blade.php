@@ -16,7 +16,7 @@
                 <span>Menu Utama</span></a>
             <ul class="dropdown-menu">
                 <li><a class="nav-link " href="{{ route('surats.index') }}">Arsip</a></li>
-                <li><a class="nav-link " href="#">About</a></li>
+                <li><a class="nav-link " href="/about">About</a></li>
             </ul>
         </li>
     </ul>
