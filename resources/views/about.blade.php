@@ -11,15 +11,14 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Hi, Ujang!</h2>
+            <h2 class="section-title">Hi, User!</h2>
 
 
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-5">
                     <div class="card profile-widget">
                         <div class="profile-widget-header">
-                            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture">
-
+                            <img alt="image" src="../assets/img/akuku.jpg" class="rounded-circle profile-widget-picture">
                         </div>
                         <div class="profile-widget-description">
                             <div class="profile-widget-name">Evina Dinda Syawalia <div class="text-muted d-inline font-weight-normal">
@@ -28,7 +27,16 @@
                             </div>
                             Halo Semua <b>Saya</b>, Evina Dinda Syawalia</b>.
                             <p>
-                                Web Developer Sitem ini <b>adalah</b>, Evina Dinda Syawalia</b>.
+                                Aplikasi ini dibuat  <b>oleh</b>, Evina Dinda Syawalia</b>.
+                                
+                            </p>
+                            <p>
+                                  <b>NIM</b> 1931710072</b>.
+                                
+                            </p>
+                            <p>
+                                 <b>Tanggal</b> 30 Oktober 2021</b>.
+                                
                             </p>
                         </div>
 
