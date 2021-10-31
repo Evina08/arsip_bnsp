@@ -40,12 +40,12 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'nomor' => 'required',
-        //     'kategori' => 'required',
-        //     'judul' => 'required',
-        //     'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
-        // ]);
+        $request->validate([
+            'nomor' => 'required',
+            'kategori' => 'required',
+            'judul' => 'required',
+            'file_path' => 'required|file|mimes:csv,txt,xlx,xls,pdf|max:2048',
+        ]);
   
         $input = $request->all();
   
@@ -53,9 +53,9 @@ class SuratController extends Controller
             $nama_file = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
             $ukuran_file = $file->getSize();
-            $destinationPath = 'pdf';
+            $destinationPath = 'pdf/ ';
             $profileFile = date('YmdHis') . "." . $file ->getClientOriginalExtension();
-            $file->move($destinationPath, $file->getClientOriginalName());
+            $file->move($destinationPath, $profileFile);
             $input['file_path '] = "$profileFile ";
         }
     
@@ -73,7 +73,7 @@ class SuratController extends Controller
      */
     public function show(Surat $surat)
     {
-        return view('surats.show',compact('surat'));
+        return view('show',compact('surat'));
     }
 
     /**

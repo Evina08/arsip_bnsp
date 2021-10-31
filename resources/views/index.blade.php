@@ -55,15 +55,14 @@
                         <td>{{ $surat->created_at }}</td>
 
                         <td>
-                            <form action="{{ route('surats.destroy',$surat->id) }}" method="POST">
-
-                                <a class="btn btn-info" href="{{ route('surats.show',$surat->id) }}">Show</a>
 
 
+                            
+                            <form class="delete-user ml-2" action="{{route('surats.destroy',$surat)}}" method="POST">
+                            <a class="btn btn-info" href="{{ route('surats.show',$surat->id) }}">Show</a>
                                 @csrf
                                 @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <a class="btn btn-primary btn-action swal-6 active" data-toggle="tooltip" data-id="" title="Delete" onClick="return false"><i class="fas fa-trash"></i></a>
                             </form>
                         </td>
                     </tr>

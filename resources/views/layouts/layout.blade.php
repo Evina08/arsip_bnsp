@@ -117,12 +117,36 @@
 
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Page Specific JS File -->
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
     </script>
+    <script>
+    // delete
+    $(document).on("click", ".swal-6", function(e) {
+      e.preventDefault();
+      let id = $(this).data('surats');
+      console.log(id);
+      swal({
+          title: 'Are you sure want to delete this data?',
+          text: 'Once deleted, you will not be able to recover this data!',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            $(this).closest("form").submit()
+            swal('Poof! data has been deleted!', {
+              icon: 'success',
+            });
+          }
+        });
+    });
+  </script>
 </body>
 
 </html>
