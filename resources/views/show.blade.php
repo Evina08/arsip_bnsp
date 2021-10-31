@@ -31,7 +31,11 @@
                 {{ $surat->created_at }}
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-            
+            <div class="form-group">
+                <strong>File:</strong>
+                <iframe src="{{ url('pdf') }}/{{ $surat>file_path }}" align="top" height="620" width="100%" frameborder="0" scrolling="auto"></iframe>
+               
+            </div>
         </div>
         </div>
 

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Surat;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Services\DataTable;
 class SuratController extends Controller
 {
     /**
@@ -15,10 +16,10 @@ class SuratController extends Controller
     public function index()
     {
        
-        $surats = Surat::latest()->paginate(5);
-    
-        return view('surats.index',compact('surats'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $surat = Surat::all();
+
+        // menampilkan data
+        return view('index')->with('surats', $surat);
     }
 
     /**
@@ -28,7 +29,7 @@ class SuratController extends Controller
      */
     public function create()
     {
-        return view('surats.create');
+        return view('create');
     }
 
     /**
@@ -39,19 +40,22 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nomor' => 'required',
-            'kategori' => 'required',
-            'judul' => 'required',
-            'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
-        ]);
+        // $request->validate([
+        //     'nomor' => 'required',
+        //     'kategori' => 'required',
+        //     'judul' => 'required',
+        //     'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+        // ]);
   
         $input = $request->all();
   
-        if ($file_path = $request->file('file_path ')) {
-            $destinationPath = 'upload /';
-            $profileFile = date('YmdHis') . "." . $file_path ->getClientOriginalExtension();
-            $file_path ->move($destinationPath, $profileFile );
+        if ($file = $request->file('file_path ')) {
+            $nama_file = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $ukuran_file = $file->getSize();
+            $destinationPath = 'pdf';
+            $profileFile = date('YmdHis') . "." . $file ->getClientOriginalExtension();
+            $file->move($destinationPath, $file->getClientOriginalName());
             $input['file_path '] = "$profileFile ";
         }
     
